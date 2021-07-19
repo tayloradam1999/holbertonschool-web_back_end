@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import Currency from './3-currency';
 
 export default class Pricing {
