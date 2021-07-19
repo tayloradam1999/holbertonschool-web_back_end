@@ -5,12 +5,12 @@ export default class HolbertonCourse {
     this.students = students;
   }
 
-  // getter for name
+  // name.getter
   get name() {
     return this._name;
   }
 
-  // setter for name
+  // name.setter
   set name(newName) {
     if (typeof newName === 'string') {
       this._name = newName;
@@ -19,12 +19,12 @@ export default class HolbertonCourse {
     }
   }
 
-  // getter for length
+  // length.getter
   get length() {
     return this._length;
   }
 
-  // setter for length
+  // length.setter
   set length(newLength) {
     if (typeof newLength === 'number') {
       this._length = newLength;
@@ -33,12 +33,12 @@ export default class HolbertonCourse {
     }
   }
 
-  // getter for students
+  // students.getter
   get students() {
     return this._students;
   }
 
-  // setter for students
+  // students.setter
   set students(newStudents) {
     if (newStudents instanceof Array) {
       if (!(newStudents.each((i) => (typeof i === 'string')))) {
