@@ -1,6 +1,6 @@
 export default function cleanSet(set, startString) {
   if (startString === '') {
-    return startString;
+    return;
   }
   const myArr = [];
   for (const item of set) {
@@ -8,7 +8,8 @@ export default function cleanSet(set, startString) {
       myArr.push(item.slice(startString.length));
     }
   }
-  return myArr.join('-');
+  const myStr = myArr.join('-');
+  return myStr;
 }
 
 //   let myStr = "";
