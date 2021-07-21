@@ -1,6 +1,6 @@
 export default function cleanSet(set, startString) {
-  if (startString === '') {
-    return '\n';
+  if (!startString) {
+    return '';
   }
   const myArr = [];
   for (const item of set) {
