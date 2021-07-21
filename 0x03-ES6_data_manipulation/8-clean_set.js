@@ -8,10 +8,5 @@ export default function cleanSet(set, startString) {
       myArr.push(item.slice(startString.length));
     }
   }
-  const myStr = myArr.join('-');
-  return myStr;
+  return myArr.join('-');
 }
-
-//   let myStr = "";
-//   set.forEach((v) => myStr.concat(v - startString + '-'));
-//   console.log(myStr);
