@@ -16,6 +16,7 @@ async def task_wait_n(n: int, max_delay: int) -> typing.List[float]:
     The list of the delays should be in ascending order without using sort()
     because of concurrency. """
     delays = []
+    new_delays = []
     for i in range(n):
         delays.append(task_wait_random(max_delay))
     new_delays = []
