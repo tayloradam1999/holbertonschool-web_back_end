@@ -4,9 +4,10 @@ Write a coroutine called async_generator that takes no arguments.
 """
 import random
 import asyncio
+import typing
 
 
-async def async_generator() -> float:
+async def async_generator() -> typing.Generator[float, None, None]:
     """
     The coroutine will loop 10 times,
     each time asynchronously wait 1 second,
