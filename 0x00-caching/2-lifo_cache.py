@@ -34,14 +34,14 @@ class LIFOCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        
+
         self.cache_data[key] = item
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            discarded_key = list(self.cache_data.keys())[BaseCaching.MAX_ITEMS - 1]
-            del self.cache_data[discarded_key]
+            discarded = list(self.cache_data.keys())[BaseCaching.MAX_ITEMS - 1]
+            del self.cache_data[discarded]
 
-            print("DISCARD: {}".format(discarded_key))
+            print("DISCARD: {}".format(discarded))
 
     def get(self, key):
         """
