@@ -13,12 +13,6 @@ class BasicCache(BaseCaching):
     -You must use self.cache_data: dictionary from the parent class BaseCaching
     -This caching system doesn’t have limit
     """
-    
-    def __init__(self):
-        """
-        -Initalize the cache_data dict
-        """
-        self.cache_data = {}
 
     def put(self, key, item):
         """
