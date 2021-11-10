@@ -36,7 +36,7 @@ class LRUCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        
+
         self.cache_data[key] = item
         self.cache_data.move_to_end(key)
 
@@ -44,7 +44,6 @@ class LRUCache(BaseCaching):
             discarded_key = list(self.cache_data.keys())[0]
             self.cache_data.popitem(last=False)
             print('DISCARD: {}'.format(discarded_key))
-
 
     def get(self, key):
         """
