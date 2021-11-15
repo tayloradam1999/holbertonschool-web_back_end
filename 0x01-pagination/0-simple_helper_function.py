@@ -13,6 +13,5 @@ def index_range(page: int, page_size: int) -> Union[Tuple[int, int], None]:
     particular pagination parameters.
     -Page numbers are 1 -indexed, the first page is page 1.
     """
-    if page < 1 or page_size < 1:
-        return None
-    return (page_size * (page - 1), page_size * page)
+    if page and page_size:
+        return (page * page_size - page_size, page * page_size)
