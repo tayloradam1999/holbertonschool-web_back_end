@@ -6,13 +6,12 @@ Function <index_range> takes two integer arguments
 from typing import Union, Tuple
 
 
-def index_range(page: int, page_size: int) -> Union[tuple[int, int], None]:
+def index_range(page: int, page_size: int) -> Union[Tuple[int, int], None]:
     """
-    Returns a tuple of size 2 containing a start index and an end index
+    -Returns a tuple of size 2 containing a start index and an end index
     corresponding to the range of indexes to return in a list for those
     particular pagination parameters.
-
-    Page numbers are 1 -indexed, the first page is page 1.
+    -Page numbers are 1 -indexed, the first page is page 1.
     """
     if page < 1 or page_size < 1:
         return None
