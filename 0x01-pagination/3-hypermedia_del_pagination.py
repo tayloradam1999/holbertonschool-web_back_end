@@ -64,7 +64,7 @@ class Server:
                 "page_size": 10,
                 "data": self.dataset()[:10]
             }
-        else: 
+        else:
             return {
                 "index": index,
                 "next_index": index + page_size,
