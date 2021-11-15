@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Function <index_range> takes two integer arguments
 <page> and <page_size>
