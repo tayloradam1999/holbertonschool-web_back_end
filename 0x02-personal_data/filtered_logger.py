@@ -4,6 +4,8 @@ Function that returns the log message obfuscated
 """
 import re
 import logging
+import os
+import mysql.connector
 from typing import List
 
 
@@ -91,3 +93,25 @@ def get_logger() -> logging.Logger:
     handler.setFormatter(RedactingFormatter(PII_FIELDS))
     logger.addHandler(handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """
+    Connects to the database named <holberton> to read the <users> table
+
+    Uses <os> module to obtain credentials from environment
+
+    Uses <mysql-connector-python> to connect to MySQL Database
+
+    Args:
+        None
+
+    Returns:
+        mysql.connector.connection.MySQLConnection: connection to <holberton>
+    """
+    user = os.environ.get("PERSONAL_DATA_DB_USERNAME")
+    password = os.environ.get("PERSONAL_DATA_DB_PASSWORD")
+    host = os.environ.get("PERSONAL_DATA_DB_HOST")
+    database = os.environ.get("PERSONAL_DATA_DB_NAME")
+    return mysql.connector.connect(user=user, password=password, host=host,
+                                   database=database)
