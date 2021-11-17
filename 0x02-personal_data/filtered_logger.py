@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Function that returns the log message obfuscated
+Obfuscating log msgs
 """
 import re
 import logging
@@ -115,3 +115,26 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     database = os.environ.get("PERSONAL_DATA_DB_NAME")
     return mysql.connector.connect(user=user, password=password, host=host,
                                    database=database)
+
+
+def main():
+    """
+    Obtains a database connection using get_db() and retrieves all rows in the
+    <users> table.
+
+    Displays each row under a filtered format using get_logger() and
+    <PII_FIELDS> to filter the fields.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        get_logger().info(filter_datum(PII_FIELDS, "***", str(row), ";"))
+    cursor.close()
+    db.close()
