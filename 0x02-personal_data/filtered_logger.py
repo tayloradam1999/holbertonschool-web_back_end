@@ -7,8 +7,8 @@ import logging
 from typing import List
 
 
-def filter_datum(fields: List[str], redaction: str, message: str, seperator:
-                 str) -> str:
+def filter_datum(fields: List[str], redaction: str, message: str,
+                 seperator: str) -> str:
     """Obfuscate log msg
 
     The function should use regex to replace occurences of certain field values
@@ -28,7 +28,7 @@ def filter_datum(fields: List[str], redaction: str, message: str, seperator:
     log = message.split(seperator)
 
     for field in fields:
-        for i in range(len(log)): 
+        for i in range(len(log)):
             log[i] = re.sub(field + '=.*', field + '=' + redaction, log[i])
     return seperator.join(log)
 
@@ -61,5 +61,5 @@ class RedactingFormatter(logging.Formatter):
             str: formatted log record
         """
         record.msg = filter_datum(self.fields, self.REDACTION, record.msg,
-                                    self.SEPARATOR)
-        return super().format(record) 
+                                  self.SEPARATOR)
+        return super().format(record)
