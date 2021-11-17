@@ -138,3 +138,5 @@ def main():
         get_logger().info(filter_datum(PII_FIELDS, "***", str(row), ";"))
     cursor.close()
     db.close()
+
+main()
