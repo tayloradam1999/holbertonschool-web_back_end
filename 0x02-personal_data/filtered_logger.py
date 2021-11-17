@@ -6,6 +6,7 @@ import re
 import logging
 import os
 import mysql.connector
+import datetime
 from typing import List
 
 
@@ -135,7 +136,7 @@ def main():
     cursor = db.cursor()
     cursor.execute("SELECT * FROM users;")
     for row in cursor:
-        get_logger().info(filter_datum(PII_FIELDS, "***", str(row), ";"))
+        get_logger().info(str(row))
     cursor.close()
     db.close()
 
