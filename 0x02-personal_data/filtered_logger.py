@@ -132,12 +132,17 @@ def main():
     Returns:
         None
     """
+    logger = get_logger()
     db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM users;")
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users")
     for row in cursor:
-        get_logger().info(str(row))
-    cursor.close()
+        # Instantiate list of tuples of <row>'s key/pair values
+        tuple_list = row.items()
+        # Convert to string of key/value pairs with separator
+        str = '; '.join(f"{tuple[0]}={tuple[1]}" for tuple in tuple_list)
+        # Pass string to logger to log in specified format
+        logger.info(str)
     db.close()
 
 main()
