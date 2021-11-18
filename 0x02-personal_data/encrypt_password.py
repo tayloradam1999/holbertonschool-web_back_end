@@ -6,7 +6,7 @@ Use <bcrypt> to perform hasing on password
 import bcrypt
 
 
-def hash_password(password: str) -> str:
+def hash_password(password: str) -> bytes:
     """
     Returns salted, hashed byte string password
     """
