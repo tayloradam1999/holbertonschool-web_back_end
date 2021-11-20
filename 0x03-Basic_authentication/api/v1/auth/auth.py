@@ -12,10 +12,29 @@ class Auth():
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
-        Returns:
-            False
+        Method that returns True if the <path> is not in the list of strings
+        <excluded_paths>.
+
+        You can assume <excluded_paths> contains string path always ending
+        with a '/'.
+
+        This method is slash intolerant. For example, if <path> is '/v1/auth'
+        and <excluded_paths> is ['/v1/auth/', '/v1/auths/'], then this method
+        will return False.
+
+        Additional Returns:
+            True if <path> is None
+            True if <excluded_paths> is None or empty
+            False if <path> is in <excluded_paths>
         """
-        return False
+        if excluded_paths is None or len(excluded_paths) == 0 or path is None:
+            return True 
+        for path_to_exclude in excluded_paths:
+            if path_to_exclude.startswith(path):
+                return False
+            else:
+                return True
+
 
     def authorization_header(self, request=None) -> str:
         """
