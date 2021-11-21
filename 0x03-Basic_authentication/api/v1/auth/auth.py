@@ -22,6 +22,10 @@ class Auth():
         and <excluded_paths> is ['/v1/auth/', '/v1/auths/'], then this method
         will return False.
 
+        Args:
+            path(str): The path to check against <excluded_paths>
+            excluded_paths(List[str]): The list of paths to check against
+
         Additional Returns:
             True if <path> is None
             True if <excluded_paths> is None or empty
@@ -37,6 +41,9 @@ class Auth():
         """
         HTTP header authorization
 
+        Args:
+            request(Flask.request): The request object
+
         Returns:
             If <request> is None, returns None.
             If <request> doesn't contain the header key <'Authorization'>,
@@ -51,9 +58,11 @@ class Auth():
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
+        Args:
+            request(Flask.request): The request object
+
         Returns:
             None
 
-        <request> will be the Flask request object.
         """
         return None
