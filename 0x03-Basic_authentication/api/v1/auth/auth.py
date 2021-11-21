@@ -27,7 +27,7 @@ class Auth():
             True if <excluded_paths> is None or empty
             False if <path> is in <excluded_paths>
         """
-        if excluded_paths is None or len(excluded_paths) == 0 or path is None:
+        if excluded_paths is None or not len(excluded_paths) or path is None:
             return True
         if path in excluded_paths or path + '/' in excluded_paths:
             return False
@@ -45,9 +45,9 @@ class Auth():
         """
         if request is None:
             return None
-        if 'Authorization' not in request.headers:
+        if not request.headers.get('Authorization'):
             return None
-        return request.headers['Authorization']
+        return request.headers.get('Authorization')
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
