@@ -11,7 +11,7 @@ class Auth():
     Manage Api Authentication
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """
+        """"
         Method that returns True if the <path> is not in the list of strings
         <excluded_paths>.
 
@@ -28,6 +28,7 @@ class Auth():
 
         Additional Returns:
             True if <path> is None
+            True if <path> is None
             True if <excluded_paths> is None or empty
             False if <path> is in <excluded_paths>
         """
@@ -43,6 +44,7 @@ class Auth():
 
         Args:
             request(Flask.request): The request object
+            asdasd
 
         Returns:
             If <request> is None, returns None.
