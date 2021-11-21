@@ -78,13 +78,14 @@ class BasicAuth(Auth):
             must be seperated by a ':'
 
         You can assume <decoded_base64_authorization_header> will contain
-        only one ';'
+        only one ':'
         """
         if decoded_base64_authorization_header is None:
             return (None, None)
         if not isinstance(decoded_base64_authorization_header, str):
             return (None, None)
         try:
-            return tuple(decoded_base64_authorization_header.split(':'))
+            a, *b = decoded_base64_authorization_header.split(":")
+            return (a, b[0])
         except Exception:
             return (None, None)
