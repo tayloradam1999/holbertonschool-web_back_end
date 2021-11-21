@@ -22,10 +22,12 @@ class BasicAuth(Auth):
             None if <authorization_header> is not a str
             None if authorization_header doesn't start with 'Basic'
                 Otherwise, return the value after 'Basic'
-            
+
         You can assume <authorization_header> contains only one 'Basic'
         """
-        if authorization_header is None or not isinstance(authorization_header, str):
+        if authorization_header is None:
+            return None
+        if not isinstance(authorization_header, str):
             return None
         if not authorization_header.startswith('Basic '):
             return None
