@@ -55,15 +55,16 @@ def auth_before_request() -> str:
         if auth.authorization_header(request) is None, abort 401
         if auth.current_user(request) is None, abort 401
     """
-    my_auth = auth.require_auth(request.path, ['/api/v1/status/',
-                                               '/api/v1/unauthorized/',
-                                               '/api/v1/forbidden/'])
-    if auth is None or my_auth is False:
+    excluded_paths = ['/api/v1/users/login',
+                      '/api/v1/users/register',
+                      '/api/v1/users/logout']
+
+    if auth is None or not auth.require_auth(request.path, excluded_paths):
         return
     if auth.authorization_header(request) is None:
         abort(401)
     if auth.current_user(request) is None:
-        abort(403)
+        abort(401)
 
 
 if __name__ == "__main__":
