@@ -3,6 +3,8 @@
 Manage 'Basic' type authentication
 """
 from api.v1.auth.auth import Auth
+from models.user import User
+from typing import TypeVar
 import base64
 
 
@@ -89,3 +91,31 @@ class BasicAuth(Auth):
             return (a, b[0])
         except Exception:
             return (None, None)
+
+    def user_object_from_credentials(self, user_email: str,
+                                     user_pwd: str) -> TypeVar('User'):
+        """
+        Returns the <User> object based on email and password.
+
+        Args:
+            user_email (str): <User> object's email
+            user_pwd (str): <User> object's password
+
+        Returns:
+            None if user_email is None or not a string
+            None if user_pwd is None or not a string
+            None if file doesn't contain <User> instance with email equal
+                to <user_email>. Use the class method <search>
+            None if <user_pwd> is not the password of the <User>
+                Use <is_valid_password> of <User>
+            Otherwise, return the <User> instance
+            """
+        if user_email is None or not isinstance(user_email, str):
+            return None
+        if user_pwd is None or not isinstance(user_pwd, str):
+            return None
+        user = User.search({'email': user_email})
+        for u in user:
+            if u.is_valid_password(user_pwd):
+                return u
+        return None
