@@ -10,7 +10,6 @@ from os import getenv
 SESSION_NAME = getenv("SESSION_NAME")
 
 
-
 class SessionAuth(Auth):
     """
     Handles Session Authentication
