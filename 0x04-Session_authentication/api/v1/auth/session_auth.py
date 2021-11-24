@@ -4,17 +4,18 @@ Session Authentication Module
 """
 from api.v1.auth.auth import Auth
 import uuid
+from os import getenv
+
+
+SESSION_NAME = getenv("SESSION_NAME")
+
 
 
 class SessionAuth(Auth):
     """
     Handles Session Authentication
     """
-    def __init__(self):
-        """
-        Init method
-        """
-        self.user_id_by_session_id = {}
+    user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
         """
@@ -46,6 +47,9 @@ class SessionAuth(Auth):
         """
         Returns the user ID for a <session_id>
 
+        Uses .get() to get the value for the key <session_id> in
+        <user_id_by_session_id>
+
         Args:
             session_id (str): The session ID
 
@@ -54,11 +58,32 @@ class SessionAuth(Auth):
             None if <session_id> is not a string
             The value (The user ID) for the key <session_id> in
                 <user_id_by_session_id>
-
-        Uses .get() to get the value for the key <session_id> in
-            <user_id_by_session_id>
         """
         if session_id is None or not isinstance(session_id, str):
             return None
         my_session_id = self.user_id_by_session_id.get(session_id)
         return my_session_id
+
+    def session_cookie(self, request=None):
+        """
+        Returns a cookie value from a request
+
+        Uses .get_cookies() to get the cookies from <request>
+
+        Uses env variable <SESSION_NAME> to define the name of the cookie
+            used for the session ID
+
+        Args:
+            request (obj): The request object
+
+        Returns:
+           None if <request> is None
+           The value of the cookie named <_my_session_id> from <request> -
+                the name of the cookie must be defined by the env variable
+                    <SESSION_NAME>
+        """
+        if request is None:
+            return None
+        my_cookies = request.get_cookies()
+        if '_my_session_id' in my_cookies:
+            return my_cookies['_my_session_id']
