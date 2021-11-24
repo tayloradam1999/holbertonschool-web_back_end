@@ -38,5 +38,4 @@ def sess_auth() -> str:
         user = User.get(user_id)
         out = jsonify(user.to_json())
         out.set_cookie(SESSION_NAME, session_id)
-        session[SESSION_NAME] = session_id
         return user.to_json()
