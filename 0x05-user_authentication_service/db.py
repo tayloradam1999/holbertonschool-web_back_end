@@ -5,6 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 from typing import TypeVar
 
 from user import Base
@@ -43,3 +45,17 @@ class DB:
         self._session.add(my_user)
         self._session.commit()
         return my_user
+
+    def find_user_by(self, **kwargs) -> TypeVar('User'):
+        """
+        Returns a User object if found in database
+
+        NoResultFound and InvalidRequestError are raised when no results
+        are found, or when wrong query arguments are passed, respectively.
+        """
+        try:
+            return self._session.query(User).filter_by(**kwargs).one()
+        except NoResultFound:
+            raise NoResultFound
+        except InvalidRequestError:
+            raise InvalidRequestError
