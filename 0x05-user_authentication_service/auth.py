@@ -3,7 +3,6 @@
 Hashes password
 """
 import bcrypt
-from typing import TypeVar
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 
