@@ -72,7 +72,8 @@ class DB:
             raise ValueError
         for arg in kwargs:
             try:
-                setattr(my_user, arg, kwargs[arg])
+                if hasattr(my_user, arg):
+                    setattr(my_user, arg, kwargs[arg])
             except ValueError:
                 raise ValueError
 
