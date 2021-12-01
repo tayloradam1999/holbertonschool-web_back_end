@@ -8,13 +8,6 @@ from sqlalchemy.orm.exc import NoResultFound
 from user import User
 
 
-def _hash_password(password: str) -> bytes:
-    """
-    Returns salted and hashed password using bcrypt.hashpw()
-    """
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-
-
 class Auth:
     """
     Auth class to interact with the authentication database
@@ -39,12 +32,12 @@ class Auth:
             User: User object
         """
         try:
-            self._db.find_user_by(email=email)
-            raise ValueError("User {} already exists.".format(email))
-        except Exception:
-            password = _hash_password(password)
-            user = self._db.add_user(email, password)
-            return user
+            user = self._db.find_user_by(email=email)
+            if user:
+                raise ValueError("User {} already exists".format(email))
+        except NoResultFound as e:
+            return self._db.add_user(email, self._hash_password(password))
+                
 
     def valid_login(self, email: str, password: str) -> bool:
         """
@@ -63,3 +56,9 @@ class Auth:
                 password.encode('utf-8'), user.hashed_password)
         except NoResultFound:
             return False
+
+def _hash_password(password: str) -> bytes:
+    """
+    Returns salted and hashed password using bcrypt.hashpw()
+    """
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
