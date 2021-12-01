@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Hashes password
+Module used to authenticate users to database.
 """
 import bcrypt
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
+from user import User
 
 
 def _hash_password(password: str) -> bytes:
@@ -22,7 +23,7 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def register_user(self, email: str, password: str) -> TypeVar('User'):
+    def register_user(self, email: str, password: str) -> User:
         """
         Hashes password with _hash_password, then saves user to database
         using self._db.add_user() and then returns the User object

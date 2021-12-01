@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-DB module
+Module that handles the database engine/session
+
+Handles user data
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
