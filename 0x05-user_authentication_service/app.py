@@ -30,8 +30,8 @@ def users():
     If user already exists, catch exception and return JSON payload and
         returns 400
     """
-    email = request.form.get('email')
-    password = request.form.get('password')
+    email = request.form.get('email', None)
+    password = request.form.get('password', None)
     try:
         AUTH.register_user(email, password)
         return jsonify({'email': email, 'message:': 'user created'}), 200
