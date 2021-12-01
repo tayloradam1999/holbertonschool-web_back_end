@@ -71,7 +71,7 @@ class DB:
         for arg in kwargs:
             try:
                 setattr(my_user, arg, kwargs[arg])
-            except:
+            except ValueError:
                 raise ValueError
 
         self._session.commit()
