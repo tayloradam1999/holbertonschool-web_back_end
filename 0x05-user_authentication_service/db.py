@@ -54,7 +54,7 @@ class DB:
         are found, or when wrong query arguments are passed, respectively.
         """
         try:
-            return self._session.query(User).filter_by(**kwargs).one()
+            return self._session.query(User).filter_by(**kwargs).first()
         except NoResultFound:
             raise NoResultFound
         except InvalidRequestError:
@@ -66,16 +66,16 @@ class DB:
 
         If an arg doesn't correspond to the user, raise ValueError
         """
-        my_user = self.find_user_by(id=user_id)
-        if not my_user:
-            raise ValueError
+        try:
+            user = self.find_user_by(id=user_id)
+        except NoResultFound:
+            raise NoResultFound
+        except Exception:
+            raise InvalidRequestError
         for arg in kwargs:
             try:
-                if hasattr(my_user, arg):
-                    setattr(my_user, arg, kwargs[arg])
-                else:
-                    raise ValueError
-            except ValueError:
+                hasattr(user, arg)
+            except Exception:
                 raise ValueError
-
+            setattr(user, arg, kwargs[arg])
         self._session.commit()
