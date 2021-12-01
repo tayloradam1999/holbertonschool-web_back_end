@@ -46,20 +46,20 @@ class Auth:
             user = self._db.add_user(email, password)
             return user
 
-    def valid_login(self, email: str, password: str) -> bool:
-        """
-        Returns True if user exists and password is correct
+    # def valid_login(self, email: str, password: str) -> bool:
+    #     """
+    #     Returns True if user exists and password is correct
 
-        Args:
-            email (str): user's email
-            password (str): user's password
+    #     Args:
+    #         email (str): user's email
+    #         password (str): user's password
 
-        Returns:
-            bool: True if user exists and password is correct
-        """
-        try:
-            user = self._db.find_user_by(email=email)
-            return bcrypt.checkpw(
-                password.encode('utf-8'), user.hashed_password)
-        except NoResultFound:
-            return False
+    #     Returns:
+    #         bool: True if user exists and password is correct
+    #     """
+    #     try:
+    #         user = self._db.find_user_by(email=email)
+    #         return bcrypt.checkpw(
+    #             password.encode('utf-8'), user.hashed_password)
+    #     except NoResultFound:
+    #         return False
