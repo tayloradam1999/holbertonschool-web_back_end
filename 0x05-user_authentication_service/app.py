@@ -10,7 +10,7 @@ AUTH = Auth()
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def index():
     """
     First get endpoint
@@ -18,8 +18,8 @@ def index():
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/users', methods=['POST'])
-def register():
+@app.route("/users", methods=["POST"])
+def users():
     """
     Expects two form data fields: "email" and "password".
 
