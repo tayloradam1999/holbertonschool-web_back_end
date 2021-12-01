@@ -33,8 +33,8 @@ def users():
     email = request.form.get('email', None)
     password = request.form.get('password', None)
     try:
-        AUTH.register_user(email, password)
-        return jsonify({'email': email, 'message:': 'user created'}), 200
+        user = AUTH.register_user(email, password)
+        return jsonify({'email': user.email, 'message:': 'user created'}), 200
     except ValueError:
         return jsonify({'message': 'email already registered'}), 400
 
