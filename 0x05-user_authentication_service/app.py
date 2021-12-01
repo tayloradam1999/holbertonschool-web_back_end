@@ -17,10 +17,10 @@ def index():
     """
     First get endpoint
     """
-    return jsonify({'message': 'Bienvenue'})
+    return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/users', methods=['POST'])
+@app.route('/users', methods=['POST'], strict_slashes=False)
 def users():
     """
     Expects two form data fields: "email" and "password".
@@ -39,5 +39,5 @@ def users():
         return jsonify({'message': 'email already registered'}), 400
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000")
