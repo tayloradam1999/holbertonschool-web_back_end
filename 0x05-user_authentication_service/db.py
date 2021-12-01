@@ -68,6 +68,8 @@ class DB:
         If an arg doesn't correspond to the user, raise ValueError
         """
         my_user = self.find_user_by(id=user_id)
+        if not my_user:
+            raise ValueError
         for arg in kwargs:
             try:
                 setattr(my_user, arg, kwargs[arg])
