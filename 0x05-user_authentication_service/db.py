@@ -47,7 +47,7 @@ class DB:
         self._session.commit()
         return my_user
 
-    def find_user_by(self, **kwargs) -> TypeVar('User'):
+    def find_user_by(self, **kwargs) -> User:
         """
         Returns a User object if found in database
 
