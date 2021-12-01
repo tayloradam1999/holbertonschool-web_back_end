@@ -74,6 +74,8 @@ class DB:
             try:
                 if hasattr(my_user, arg):
                     setattr(my_user, arg, kwargs[arg])
+                else:
+                    raise ValueError
             except ValueError:
                 raise ValueError
 
