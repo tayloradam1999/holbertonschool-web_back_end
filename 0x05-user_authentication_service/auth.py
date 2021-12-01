@@ -8,6 +8,13 @@ from sqlalchemy.orm.exc import NoResultFound
 from user import User
 
 
+def _hash_password(password: str) -> bytes:
+    """
+    Returns salted and hashed password using bcrypt.hashpw()
+    """
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+
 class Auth:
     """
     Auth class to interact with the authentication database
@@ -52,13 +59,8 @@ class Auth:
         """
         try:
             user = self._db.find_user_by(email=email)
-            return bcrypt.checkpw(
-                password.encode('utf-8'), user.hashed_password)
-        except NoResultFound:
+            if user:
+                return bcrypt.checkpw(password.encode('utf-8'), user.password)
             return False
-
-def _hash_password(password: str) -> bytes:
-    """
-    Returns salted and hashed password using bcrypt.hashpw()
-    """
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        except NoResultFound as e:
+            return False
