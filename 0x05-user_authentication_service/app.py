@@ -7,8 +7,6 @@ from auth import Auth
 
 
 AUTH = Auth()
-
-
 app = Flask(__name__)
 
 
@@ -20,8 +18,8 @@ def index():
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/users', methods=['POST'], strict_slashes=False)
-def users():
+@app.route('/users', methods=['POST'])
+def register():
     """
     Expects two form data fields: "email" and "password".
 
@@ -30,11 +28,11 @@ def users():
     If user already exists, catch exception and return JSON payload and
         returns 400
     """
-    email = request.form.get('email', None)
-    password = request.form.get('password', None)
+    email = request.form.get('email')
+    password = request.form.get('password')
     try:
-        user = AUTH.register_user(email, password)
-        return jsonify({'email': user.email, 'message:': 'user created'}), 200
+        AUTH.register_user(email=email, password=password)
+        return jsonify({'email': email, 'message:': 'user created'}), 200
     except ValueError:
         return jsonify({'message': 'email already registered'}), 400
 
