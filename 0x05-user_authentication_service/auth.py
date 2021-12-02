@@ -118,3 +118,23 @@ class Auth:
         """
         user = self._db.find_user_by(id=user_id)
         user.session_id = None
+
+    def get_reset_password_token(self, email: str) -> str:
+        """
+        Finds corresponding user to email. Generates UUID
+        and updates the user's <reset_token> database field.
+        Then returns the reset_token
+
+        Args:
+            email (str): user's email
+
+        Returns:
+            If user does not exist, raises ValueError
+            Otherwise, returns reset_token
+        """
+        user = self._db.find_user_by(email=email)
+        if not user:
+            raise ValueError()
+        reset_token = _generate_uuid()
+        user.reset_token = reset_token
+        return reset_token
