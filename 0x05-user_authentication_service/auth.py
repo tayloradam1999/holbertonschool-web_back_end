@@ -140,11 +140,11 @@ class Auth:
                 return reset_token
         except Exception as e:
             raise ValueError()
-        
+
     def update_password(self, reset_token: str, password: str) -> None:
         """
         Uses <reset_token> to find corresponding User.
-        
+
         Hashes the password and updates the user's <hashed_password> field
         with the new hashed password and the <reset_token> field to None
 
