@@ -99,9 +99,11 @@ def reset_password():
     generates a token and responds with 200 and JSON payload of form.
     """
     email = request.form.get('email')
-    if not email or not AUTH.valid_email(email):
+    if not email:
         abort(403)
-    token = AUTH.create_token(email)
+    token = AUTH.get_reset_password_token(email)
+    if not token:
+        abort(403)
     return jsonify({'email': email, 'reset_token': token})
 
 
