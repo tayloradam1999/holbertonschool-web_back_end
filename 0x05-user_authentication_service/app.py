@@ -78,7 +78,7 @@ def logout():
 def profile():
     """
     Expected to contain a session_id cookie.
-    
+
     Uses session_id to find user. If the user exists, respond with 200
     and JSON payload of form. If the user does not exist or the
     session_id is invalid, respond with 403.
