@@ -112,6 +112,9 @@ class Auth:
 
         Args:
             user_id (int): user's id
+            
+        Returns:
+            None
         """
         user = self._db.find_user_by(id=user_id)
         user.session_id = None
