@@ -133,8 +133,8 @@ class Auth:
             Otherwise, returns reset_token
         """
         user = self._db.find_user_by(email=email)
-        if not user:
+        if not user or not email:
             raise ValueError()
         reset_token = _generate_uuid()
-        user.reset_token = reset_token
+        self._db.update_user(user.id, reset_token=reset_token)
         return reset_token
