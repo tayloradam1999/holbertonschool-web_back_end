@@ -74,5 +74,21 @@ def logout():
     return redirect('/', 302)
 
 
+@app.route("/profile", methods=["GET"])
+def profile():
+    """
+    Expected to contain a session_id cookie.
+    
+    Uses session_id to find user. If the user exists, respond with 200
+    and JSON payload of form. If the user does not exist or the
+    session_id is invalid, respond with 403.
+    """
+    sesh_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(sesh_id)
+    if not user or not sesh_id:
+        abort(403)
+    return jsonify({'email': user.email})
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
