@@ -2,7 +2,7 @@
 """
 Creates Flask app
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from auth import Auth
 
 
@@ -35,7 +35,28 @@ def users():
         return jsonify({'email': email, 'message:': 'user created'})
     except ValueError as e:
         return jsonify({'message': 'email already registered'}), 400
+    
 
+@app.route("/sessions", methods=["POST"])
+def sessions():
+    """
+    Expects two form data fields: "email" and "password".
+    
+    If login info is incorrect, use flask.abort to respond with 401.
+    
+    Otherwise, create new session for the user, store the session_id as
+    a cookie with key "session_id" and returns JSON payload of form.
+    """
+    email = request.form.get('email')
+    password = request.form.get('password')
+    try:
+        sesh_id = AUTH.create_session(email)
+        result = jsonify({'email': email, 'message': 'logged in'})
+        result.set_cookie('session_id', sesh_id)
+        return result
+    except Exception as e:
+        abort(401)
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
