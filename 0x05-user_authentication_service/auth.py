@@ -112,7 +112,7 @@ class Auth:
 
         Args:
             user_id (int): user's id
-            
+
         Returns:
             None
         """
