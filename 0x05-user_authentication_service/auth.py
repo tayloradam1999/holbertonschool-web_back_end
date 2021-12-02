@@ -3,6 +3,7 @@
 Module used to authenticate users to database.
 """
 import bcrypt
+import uuid
 from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 from user import User
@@ -13,6 +14,13 @@ def _hash_password(password: str) -> bytes:
     Returns salted and hashed password using bcrypt.hashpw()
     """
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+
+def _generate_uuid() -> str:
+    """
+    Returns string representation of a new UUID
+    """
+    return str(uuid.uuid4())
 
 
 class Auth:
