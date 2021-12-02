@@ -66,10 +66,11 @@ def logout():
     and redirect the user to 'GET /'. If the user does not exist,
     respond with 403.
     """
-    user = AUTH.get_user_by_session_id(request.cookies.get('session_id'))
+    sesh_id = request.cookies.get('session_id')
+    user = AUTH.get_user_by_session_id(sesh_id)
     if user:
-        AUTH.destroy_session(request.cookies.get('session_id'))
-        return redirect('/', 302)
+        AUTH.destroy_session(sesh_id)
+        return redirect('/', code=302)
     abort(403)
 
 
