@@ -35,15 +35,15 @@ def users():
         return jsonify({'email': email, 'message:': 'user created'})
     except ValueError as e:
         return jsonify({'message': 'email already registered'}), 400
-    
+
 
 @app.route("/sessions", methods=["POST"])
 def sessions():
     """
     Expects two form data fields: "email" and "password".
-    
+
     If login info is incorrect, use flask.abort to respond with 401.
-    
+
     Otherwise, create new session for the user, store the session_id as
     a cookie with key "session_id" and returns JSON payload of form.
     """
