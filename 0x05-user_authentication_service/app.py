@@ -68,10 +68,10 @@ def logout():
     """
     sesh_id = request.cookies.get('session_id')
     user = AUTH.get_user_from_session_id(sesh_id)
-    if user:
-        AUTH.destroy_session(user.id)
-        return redirect('/', code=302)
-    abort(403)
+    if not user:
+        abort(403)
+    AUTH.destroy_session(user.id)
+    return redirect('/', 302)
 
 
 if __name__ == "__main__":
