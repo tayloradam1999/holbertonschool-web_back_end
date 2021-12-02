@@ -94,7 +94,7 @@ def profile():
 def reset_password():
     """
     Expected to contain email field.
-    
+
     If email is not registered, responds with 403. Otherwise,
     generates a token and responds with 200 and JSON payload of form.
     """
