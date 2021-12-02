@@ -67,7 +67,7 @@ def logout():
     respond with 403.
     """
     sesh_id = request.cookies.get('session_id')
-    user = AUTH.get_user_by_session_id(sesh_id)
+    user = AUTH.get_user_from_session_id(sesh_id)
     if user:
         AUTH.destroy_session(sesh_id)
         return redirect('/', code=302)
