@@ -49,14 +49,13 @@ def sessions():
     """
     email = request.form.get('email')
     password = request.form.get('password')
-    try:
-        sesh_id = AUTH.create_session(email)
-        result = jsonify({'email': email, 'message': 'logged in'})
-        result.set_cookie('session_id', sesh_id)
-        return result
-    except Exception as e:
+    if not email or not password or not AUTH.valid_login(email, password):
         abort(401)
-    
+    sesh_id = AUTH.create_session(email)
+    result = jsonify({'email': email, 'message': 'logged in'})
+    result.set_cookie('session_id', sesh_id)
+    return result
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
