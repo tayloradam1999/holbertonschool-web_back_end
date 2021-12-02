@@ -121,7 +121,7 @@ def reset_password_change():
     reset_token = request.form.get('reset_token')
     new_password = request.form.get('new_password')
     try:
-        AUTH.update_password(email, reset_token, new_password)
+        AUTH.update_password(reset_token, new_password)
         return jsonify({'email': email, 'message': 'Password updated'})
     except Exception as e:
         abort(403)
