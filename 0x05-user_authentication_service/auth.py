@@ -76,7 +76,8 @@ class Auth:
     def create_session(self, email: str) -> str:
         """
         Finds user corresponding to email, generates new UUID,
-        saves UUID to database, and returns UUID
+        saves UUID to database as the user's session_id,
+        then return the session_id
 
         Args:
             email (str): user's email
@@ -85,8 +86,7 @@ class Auth:
             str: UUID
         """
         user = self._db.find_user_by(email=email)
-        if user:
-            session_id = _generate_uuid()
-            self._db.add_session(user.id, session_id)
-            return session_id
-        return None
+        session_id = _generate_uuid()
+        user.id = session_id
+        return session_id
+            
