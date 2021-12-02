@@ -72,7 +72,7 @@ class Auth:
             return False
         except NoResultFound as e:
             return False
-        
+
     def create_session(self, email: str) -> str:
         """
         Finds user corresponding to email, generates new UUID,
@@ -89,4 +89,3 @@ class Auth:
         session_id = _generate_uuid()
         user.session_id = session_id
         return session_id
-            
