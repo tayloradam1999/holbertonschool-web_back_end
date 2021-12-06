@@ -32,3 +32,27 @@ class TestAccessNestedMap(unittest.TestCase):
 		"""
 		from utils import access_nested_map
 		self.assertRaises(KeyError, access_nested_map, map, path)
+
+
+class TestGetJson(unittest.TestCase):
+	"""
+	Test get_json method
+	"""
+	@parameterized.expand([
+		("http://example.com", {"payload": True}),
+		("http://holberton.io", {"payload": False}),
+	])
+	def test_get_json(self, test_url, test_payload):
+		"""
+		Use unittest.mock.patch to patch requests.get
+
+		Makes sure it returns a <Mock> obj with a <json> method
+		that returns <test_payload> which you parameterize alongside the
+		<test_url> that will pass to <get_json> with the parameterized inputs:
+		"""
+		from utils import get_json
+		import requests
+		from unittest import mock
+		with mock.patch('requests.get', return_value=mock.Mock(
+			json=lambda: test_payload)):
+			self.assertEqual(get_json(test_url), test_payload)
