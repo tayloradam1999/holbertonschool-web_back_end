@@ -15,9 +15,9 @@ class TestAccessNestedMap(unittest.TestCase):
 		{"a": {"b": 2}}, ("a",),
 		{"a": {"b": 2}}, ("a", "b"),
 	])
-	def test_access_nested_map(self, d, keys):
+	def test_access_nested_map(self, map, path, expected):
 		"""
 		Test access to nested map method
 		"""
 		from utils import access_nested_map
-		self.assertEqual(access_nested_map(d, keys), d[keys[0]][keys[1]])
+		self.assertEqual(access_nested_map(map, path), expected)
