@@ -81,8 +81,8 @@ class TestMemoize(unittest.TestCase):
         from unittest import mock
         """ Test when calling a_property twice, the correct result is returned
         and a_method is only called once """
-        my_var = TestClass()
-        my_var.a_method = mock.MagicMock(return_value=42)
-        self.assertEqual(my_var.a_property, 42)
-        self.assertEqual(my_var.a_property, 42)
-        my_var.a_method.assert_called_once()
+        with mock.patch.object(TestClass, 'a_method', return_value=42) as mock_method:
+            test_class = TestClass()
+            self.assertEqual(test_class.a_property, 42)
+            self.assertEqual(test_class.a_property, 42)
+            mock_method.assert_called_once()
