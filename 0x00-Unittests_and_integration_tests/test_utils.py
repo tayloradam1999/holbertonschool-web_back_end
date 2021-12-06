@@ -2,11 +2,11 @@
 """
 Unittests for utils.py
 """
-import unittest
+from unittest import TestCase, mock
 from parameterized import parameterized
 
 
-class TestAccessNestedMap(unittest.TestCase):
+class TestAccessNestedMap(TestCase):
     """
         Test access to nested map method
     """
@@ -34,7 +34,7 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertRaises(KeyError, access_nested_map, map, path)
 
 
-class TestGetJson(unittest.TestCase):
+class TestGetJson(TestCase):
     """
     Test get_json method
     """
@@ -58,19 +58,15 @@ class TestGetJson(unittest.TestCase):
             self.assertEqual(get_json(test_url), test_payload)
 
 
-class TestMemoize(unittest.TestCase):
-    """
-    Test memoize Class
-    """
+class TestMemoize(TestCase):
+    """ Tests for memoize method """
 
     def test_memoize(self):
-        """
-        Test memoize method
-        """
+        """ Test for memoize """
         from utils import memoize
 
         class TestClass:
-
+            """ Test class for memoize method """
             def a_method(self):
                 return 42
 
@@ -78,12 +74,9 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 return self.a_method()
 
-        from unittest import mock
-        """ Test when calling a_property twice, the correct result is returned
-        and a_method is only called once """
-        with mock.patch.object(TestClass, 'a_method',
+        with mock.patch.object(TestClass, "a_method",
                                return_value=42) as mock_method:
-            test_class = TestClass()
-            self.assertEqual(test_class.a_property, 42)
-            self.assertEqual(test_class.a_property, 42)
+            test2 = TestClass()
+            self.assertEqual(test2.a_property, 42)
+            self.assertEqual(test2.a_property, 42)
             mock_method.assert_called_once()
