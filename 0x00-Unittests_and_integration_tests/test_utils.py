@@ -2,6 +2,7 @@
 """
 Unittests for utils.py
 """
+import unittest
 from unittest import TestCase
 from unittest.mock import patch
 from parameterized import parameterized
@@ -60,7 +61,7 @@ class TestGetJson(TestCase):
             self.assertEqual(get_json(test_url), test_payload)
 
 
-class TestMemoize(TestCase):
+class TestMemoize(unittest.TestCase):
     """ Test class 
 	direct cause of pain and suffering """
 
