@@ -62,8 +62,7 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """ Test class 
-	direct cause of pain and suffering """
+    """ Test class direct cause of pain and suffering """
 
     def test_memoize(self):
         """ Tests memoize method """
