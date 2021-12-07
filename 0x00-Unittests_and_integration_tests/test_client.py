@@ -12,18 +12,15 @@ from fixtures import *
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """
-    Class that handles testing the GithubOrgClient
-    """
+    """ Class that handles testing the GithubOrgClient """
+
     @parameterized.expand([
         ("google"),
         ("abc"),
     ])
     @patch("client.get_json", return_value={"payload": True})
     def test_org(self, org, mock_get_json):
-        """
-        Tests return value of GithubOrgClient
-        """
+        """ Tests return value of GithubOrgClient """
         client = GithubOrgClient(org)
         client_return = client.org
         self.assertEqual(client_return, mock_get_json.return_value)
