@@ -7,24 +7,28 @@ from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from parameterized import parameterized_class
 from client import GithubOrgClient
+from urllib.error import HTTPError
 from fixtures import *
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """ Class that handles testing the GithubOrgClient """
-
+    """
+    Tests github org client
+    """
     @parameterized.expand([
         ("google"),
         ("abc"),
     ])
     @patch("client.get_json", return_value={"payload": True})
     def test_org(self, org, mock_get_json):
-        """ Tests return value of GithubOrgClient """
+        """
+        Tests return value of GithubOrgClient.org
+        """
         client = GithubOrgClient(org)
         client_return = client.org
         self.assertEqual(client_return, mock_get_json.return_value)
 
-    def test_public_repos(self):
+    def test_public_repos_url(self):
         """
         Tests return value of GithubOrgClient.public_repos_url
         """
@@ -64,3 +68,22 @@ class TestGithubOrgClient(unittest.TestCase):
         test_client = GithubOrgClient("holberton")
         test_return = test_client.has_license(repo, license_key)
         self.assertEqual(test_return, expected)
+
+
+@parameterized_class(
+    ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
+    TEST_PAYLOAD
+)
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """
+    Integration test for public_repos method
+    """
+    @classmethod
+    def setUpClass(cls):
+        """ Part of TestCase API """
+        cls.get_patcher = patch('requests.get', side_effect=HTTPError)
+
+    @classmethod
+    def tearDownClass(cls):
+        """ Part of TestCase API """
+        cls.get_patcher.stop()
