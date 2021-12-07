@@ -39,7 +39,7 @@ class TestAccessNestedMap(TestCase):
 
 class TestGetJson(TestCase):
     """
-    Test get_json method
+    This class object tests retriving a json return
     """
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
@@ -62,20 +62,20 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """ Test class direct cause of pain and suffering """
+    """ Test class, direct cause of pain and suffering """
 
     def test_memoize(self):
-        """ Tests memoize method """
+        """ This method tests the memoize function """
         class TestClass:
-            """ class """
+            """ Test class for memoize function """
 
             def a_method(self):
-                """ method  """
+                """ the method that is being mocked """
                 return 42
 
             @memoize
             def a_property(self):
-                """ property """
+                """ the property that is being mocked """
                 return self.a_method()
         with patch.object(TestClass, "a_method") as mockMethod:
             test_class = TestClass()
