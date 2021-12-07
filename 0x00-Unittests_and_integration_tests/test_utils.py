@@ -5,6 +5,7 @@ Unittests for utils.py
 import unittest
 from unittest import TestCase
 from unittest.mock import patch
+from unittest import mock
 from parameterized import parameterized
 from utils import memoize
 
@@ -48,7 +49,6 @@ class TestGetJson(TestCase):
     def test_get_json(self, test_url, test_payload):
         """
         Use unittest.mock.patch to patch requests.get
-
         Makes sure it returns a <Mock> obj with a <json> method
         that returns <test_payload> which you parameterize alongside the
         <test_url> that will pass to <get_json> with the parameterized inputs:
@@ -62,26 +62,24 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """ Test class, direct cause of pain and suffering """
-
+    """ This is a class that holds methods for testing the utils.memoize """
     def test_memoize(self):
-        """ This method tests the memoize function """
+        """ This method tests utils.memoize """
         class TestClass:
-            """ Test class for memoize function """
-
+            """ This class holds a method of memoization """
             def a_method(self):
-                """ the method that is being mocked """
+                """ This is the mock method """
                 return 42
 
             @memoize
             def a_property(self):
-                """ the property that is being mocked """
+                """ This is the mock property with mock method's value """
                 return self.a_method()
-        with patch.object(TestClass, "a_method") as mockMethod:
-            test_class = TestClass()
-            test_class.a_property
-            test_class.a_property
-            mockMethod.assert_called_once
+        with mock.patch.object(TestClass, 'a_method') as fn:
+            tc = TestClass()
+            tc.a_property
+            tc.a_property
+            fn.assert_called_once()
 
 
 if __name__ == '__main__':
