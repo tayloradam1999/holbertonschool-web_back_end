@@ -13,7 +13,7 @@ from fixtures import *
 
 class TestGithubOrgClient(unittest.TestCase):
     """
-    Tests github org client
+    Class that handles testing the GithubOrgClient
     """
     @parameterized.expand([
         ("google"),
@@ -22,7 +22,7 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch("client.get_json", return_value={"payload": True})
     def test_org(self, org, mock_get_json):
         """
-        Tests return value of GithubOrgClient.org
+        Tests return value of GithubOrgClient
         """
         client = GithubOrgClient(org)
         client_return = client.org
