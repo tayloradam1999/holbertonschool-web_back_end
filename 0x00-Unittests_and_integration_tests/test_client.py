@@ -4,7 +4,6 @@ Tests github org client
 """
 import unittest
 from unittest.mock import patch, PropertyMock
-from urllib.error import HTTPError
 from parameterized import parameterized
 from parameterized import parameterized_class
 from client import GithubOrgClient
