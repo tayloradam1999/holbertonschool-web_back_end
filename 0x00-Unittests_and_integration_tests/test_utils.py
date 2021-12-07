@@ -63,10 +63,12 @@ class TestGetJson(TestCase):
 
 class TestMemoize(unittest.TestCase):
     """ This is a class that holds methods for testing the utils.memoize """
+
     def test_memoize(self):
         """ This method tests utils.memoize """
         class TestClass:
             """ This class holds a method of memoization """
+
             def a_method(self):
                 """ This is the mock method """
                 return 42
