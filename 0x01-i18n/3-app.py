@@ -28,8 +28,8 @@ class Config():
 
 
 app.config.from_object(Config)
-gettext('home_title')
-gettext('home_header')
+gettext(u'home_title')
+gettext(u'home_header')
 
 
 @babel.localeselector
