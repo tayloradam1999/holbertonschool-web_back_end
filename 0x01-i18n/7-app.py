@@ -95,8 +95,6 @@ def get_timezone():
         return 'UTC'
 
 # simulate getting user from databse
-
-
 def get_user():
     """
     Returns user dictionary or None if ID cannot be found or
