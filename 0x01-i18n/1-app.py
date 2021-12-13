@@ -7,7 +7,7 @@ and timezone <UTC>
 
 Uses that class as config for flask app.
 """
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -15,7 +15,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
+class Config():
     """
     Configure Babel.
     """
