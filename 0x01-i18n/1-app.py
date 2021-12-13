@@ -32,7 +32,7 @@ def index():
     """
     Return the index page.
     """
-    return render_template('1-index.html')
+    return render_template('1-index.html'), 200
 
 
 if __name__ == '__main__':
