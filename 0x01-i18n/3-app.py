@@ -11,7 +11,8 @@ Uses gettext to parameterize templates using message IDS
 'home_title' and 'home_header'.
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, gettext
+from flask_babel import Babel
+import gettext
 
 
 app = Flask(__name__)
