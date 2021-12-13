@@ -28,7 +28,7 @@ class Config():
 
 
 app.config.from_object(Config)
-_ = gettext.gettext
+_ = gettext
 print(_('home_title'))
 print(_('home_header'))
 
