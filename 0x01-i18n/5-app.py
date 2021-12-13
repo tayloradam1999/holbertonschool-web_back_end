@@ -87,7 +87,8 @@ def before_request():
     data = get_user()
     if data:
         g.user = data
-        home_text = _('logged_in') % g.user['name']
+        home_text = (_('{logged_in}').format(logged_in=_(
+                     'Logged in as {name}').format(name=data['name'])))
         return render_template('5-index.html', home_text=home_text)
     else:
         return render_template('5-index.html', home_text=_('not_logged_in'))
