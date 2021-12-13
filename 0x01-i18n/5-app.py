@@ -75,7 +75,6 @@ def get_user():
     except Exception:
         return None
     return users[user_id]
-        
 
 
 # loads user before page is rendered, ignore empty line below :(
