@@ -7,7 +7,6 @@ and timezone <UTC>
 
 Uses that class as config for flask app.
 """
-import re
 from flask import Flask, request, g
 from flask_babel import Babel
 from flask_babel import gettext as _
