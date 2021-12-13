@@ -27,27 +27,6 @@ class Config(object):
 app.config.from_object(Config)
 
 
-@babel.localeselector
-def get_locale():
-    """
-    Get locale from flask.
-    """
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.locale
-    return request.accept_languages.best_match(Config.LANGUAGES)
-
-
-@babel.timezoneselector
-def get_timezone():
-    """
-    Get timezone from flask.
-    """
-    user = getattr(g, 'user', None)
-    if user is not None:
-        return user.timezone
-
-
 @app.route('/')
 def index():
     """
