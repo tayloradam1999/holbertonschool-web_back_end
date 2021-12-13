@@ -27,7 +27,7 @@ def get_locale():
     """
     Get locale from flask.
     """
-    return request.accept_languages.best_match(Config.LANGUAGES)
+    return request.accept_languages.best_match(Config['LANGUAGES'])
 
 
 @app.route('/')
@@ -35,7 +35,7 @@ def index():
     """
     Return the index page.
     """
-    return render_template('index.html')
+    return render_template('1-index.html')
 
 
 if __name__ == '__main__':
