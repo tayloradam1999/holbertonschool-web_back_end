@@ -29,7 +29,10 @@ def get_locale():
     """
     Get locale from flask.
     """
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @babel.timezoneselector
