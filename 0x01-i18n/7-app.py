@@ -90,8 +90,8 @@ def get_timezone():
         user = get_user()
         if user and user['timezone'] in pytz.all_timezones:
             return user['timezone']
-        raise Exception
-    except Exception:
+        raise pytz.exceptions.UnknownTimeZoneError
+    except pytz.exceptions.UnknownTimeZoneError:
         return 'UTC'
 
 # simulate getting user from databse
