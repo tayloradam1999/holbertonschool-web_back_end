@@ -50,7 +50,7 @@ class Cache():
             str: key of the stored data
         """
         key = str(uuid.uuid4())
-        Cache()._redis.set(key, data)
+        self._redis.set(key, data)
         return key
 
     def get(self, key: str, fn: Callable[[bytes], str] = None) -> str:
