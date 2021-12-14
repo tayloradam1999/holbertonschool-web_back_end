@@ -60,6 +60,7 @@ class Cache():
     named <_redis> (using redis.Redis()) and flushes the instance
     using the flushdb() method.
     """
+
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
@@ -125,3 +126,19 @@ class Cache():
             int: data stored in Redis
         """
         return self.get(key, int)
+
+
+def replay(method: Callable) -> Callable:
+    """
+    Displays the history of calls of a particular method.
+
+    Uses keys previously generated to generate required output.
+
+    Uses lrange and zip to loop over inputs and outputs.
+    """
+    instance = redis.Redis()
+    qn = method.__qualname__
+    inputs = instance.lrange(f"{qn}:inputs", 0, -1)
+    outputs = instance.lrange(f"{qn}:outputs", 0, -1)
+    for input, output in zip(inputs, outputs):
+        print(f"{input} -> {output}")
