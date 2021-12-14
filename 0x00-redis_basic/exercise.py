@@ -138,8 +138,9 @@ def replay(method: Callable) -> Callable:
     """
     instance = redis.Redis()
     qn = method.__qualname__
+    cache = Cache()
     inputs = instance.lrange(f"{qn}:inputs", 0, -1)
     outputs = instance.lrange(f"{qn}:outputs", 0, -1)
     print("{} was called {} times:".format(qn, instance.get(qn)))
     for input, output in zip(inputs, outputs):
-        print(f"{qn}(*{input}) -> {output}")
+        print(f"{qn}(*{input.decode('UTF-8')}) -> {output}")
