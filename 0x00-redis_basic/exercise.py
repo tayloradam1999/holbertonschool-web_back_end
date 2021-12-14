@@ -140,5 +140,6 @@ def replay(method: Callable) -> Callable:
     qn = method.__qualname__
     inputs = instance.lrange(f"{qn}:inputs", 0, -1)
     outputs = instance.lrange(f"{qn}:outputs", 0, -1)
+    print("{} was called {} times:".format(qn, instance.get(qn)))
     for input, output in zip(inputs, outputs):
-        print(f"{input} -> {output}")
+        print(f"{qn}(*{input}) -> {output}")
