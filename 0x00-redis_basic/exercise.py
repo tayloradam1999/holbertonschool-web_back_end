@@ -60,7 +60,6 @@ class Cache():
     named <_redis> (using redis.Redis()) and flushes the instance
     using the flushdb() method.
     """
-
     def __init__(self):
         self._redis = redis.Redis()
         self._redis.flushdb()
