@@ -10,7 +10,7 @@ def list_all(mongo_collection):
 		mongo_collection: A pymongo.collection object
 	
 	Returns:
-		All documents in collection
-		Empty list if no documents
+		- All documents in collection
+		- Empty list if no documents
 	"""
 	return mongo_collection.find()
