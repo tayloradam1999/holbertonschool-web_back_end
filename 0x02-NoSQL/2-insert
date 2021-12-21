@@ -2,6 +2,6 @@
 // the database name will be passed as option of <mongo> command
 db.school.insert(
 	{
-		name: 'Holberton School'
+		name: 'Holberton school'
 	}
 )
