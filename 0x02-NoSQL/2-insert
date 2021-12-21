@@ -1,6 +1,7 @@
 // inserts a document in the collection <school>
-school.insertOne(
+// the database name will be passed as option of <mongo> command
+db.school.insert(
 	{
-		"name": "Holberton School",
+		name: 'Holberton School'
 	}
 )
