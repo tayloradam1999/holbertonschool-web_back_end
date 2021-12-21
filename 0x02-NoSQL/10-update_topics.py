@@ -15,4 +15,4 @@ def update_topics(mongo_collection, name, topics):
 		- The document updated
 		- None if no document updated
 	"""
-	return mongo_collection.update_one({'name': name}, {'$set': {'topics': topics}}).modified_count
+	return mongo_collection.update_many({'name': name}, {'$set': {'topics': topics}})
