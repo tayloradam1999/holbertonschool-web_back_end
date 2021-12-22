@@ -16,30 +16,25 @@ Display:
 
 
 import pymongo
-import sys
-import os
 
 
 def log():
 	"""
 	Main function
 	"""
-	if len(sys.argv) != 2:
-		print("Usage: {} <db_name>".format(os.path.basename(sys.argv[0])))
-		sys.exit(1)
-	db_name = sys.argv[1]
 	client = pymongo.MongoClient()
-	db = client[db_name]
-	collection = db['nginx']
-	print("{} logs where {} is the number of documents in the collection".format(
-		collection.count(), collection.count()))
-	print("Methods:")
-	methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-	for method in methods:
-		print("{} = {}".format(method, collection.count({'method': method})))
-	print("Methods=GET")
-	print("Path=/status = {}".format(collection.count({'method': 'GET', 'path': '/status'})))
+	db = client.logs
+	collection = db.nginx
 
+	print("{} logs".format(collection.count()))
+
+	print("Methods:")
+	methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+
+	for method in methods:
+		print("{}: {}".format(method, collection.find({'method': method}).count()))
+
+	print("{} status check".format(collection.find({'path': '/status'}).count()))
 
 if __name__ == "__main__":
     log()
