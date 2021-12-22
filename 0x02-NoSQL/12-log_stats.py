@@ -32,7 +32,7 @@ def log():
 	methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
 	for method in methods:
-		print("\t{}: {}".format(method, collection.count_documents({"method": method})))
+		print("\tmethod {}: {}".format(method, collection.count_documents({"method": method})))
 
 	print("{} status check".format(collection.count_documents({'path': '/status'})))
 
