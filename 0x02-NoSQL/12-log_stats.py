@@ -26,15 +26,15 @@ def log():
 	db = client.logs
 	collection = db.nginx
 
-	print("{} logs".format(collection.count()))
+	print("{} logs".format(collection.count_documents({})))
 
 	print("Methods:")
 	methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
 	for method in methods:
-		print("{}: {}".format(method, collection.find({'method': method}).count()))
+		print("{}: {}".format(method, collection.count_documents({"method": method})))
 
-	print("{} status check".format(collection.find({'path': '/status'}).count()))
+	print("{} status check".format(collection.count_documents({'path': '/status'})))
 
 if __name__ == "__main__":
     log()
