@@ -20,7 +20,7 @@ import sys
 import os
 
 
-def main():
+def log():
 	"""
 	Main function
 	"""
@@ -39,3 +39,7 @@ def main():
 		print("{} = {}".format(method, collection.count({'method': method})))
 	print("Methods=GET")
 	print("Path=/status = {}".format(collection.count({'method': 'GET', 'path': '/status'})))
+
+
+if __name__ == "__main__":
+    log()
