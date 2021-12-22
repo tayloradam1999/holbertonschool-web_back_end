@@ -2,28 +2,28 @@
 """
 Provides some stats about Nginx logs stored in MongoDB
 """
-from pymongo import MongoClient
+import pymongo
 
 
 def log():
     """
     Handles printing the stats
     """
-    client = MongoClient()
+    client = pymongo.MongoClient()
     db = client.logs
     collection = db.nginx
 
-    print(f"{collection.count_documents({})} logs")
+    print("{} logs".format(collection.count_documents({})))
 
     print("Methods:")
     methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
     for method in methods:
-        print(
-            f"\tmethod {method}: {collection.count_documents({'method': method})}")
+        print("\tmethod {}: {}".format(
+            method, collection.count_documents({"method": method})))
 
-    print(f"{collection.count_documents({'method': 'GET', 'path': '/status'})} \
-status check")
+    print("{} status check".format(collection.count_documents(
+        {"method": "GET", "path": "/status"})))
 
 
 if __name__ == "__main__":
