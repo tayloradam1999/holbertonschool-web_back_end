@@ -1,11 +1,14 @@
 const fs = require('fs');
+const util = require('util');
 
+// reads from database file asynchronously
 function countStudents(path) {
-	// Reads database file asynchronously
-	fs.readFile(path, 'utf8', (err, data) => {
-		if (err) {
-			throw new Error('Cannot load the database');
-		}
+	try {
+		let fileData = util.promisify(fs.readFile)(path, 'utf8');
+	} catch (err) {
+		throw new Error('Cannot load the database');
+	}
+	return fileData.then((data) => {
 		// Calculate number of students total in database
 		// DOES NOT INCLUDE HEADER LINE OF CSV FILE AND BLANK LINES
 		console.log(`Number of students: ${data.split('\n').length - 2}`);
