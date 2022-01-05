@@ -3,7 +3,7 @@ function countStudents(path) {
   const fs = require('fs');
   const fileData = fs.readFileSync(path, 'utf8');
   // if file is not available, throw error
-  if (!fileData) {
+  if (fileData === undefined) {
     throw new Error('Cannot load the database');
   }
   // otherwise, logs number of students.
