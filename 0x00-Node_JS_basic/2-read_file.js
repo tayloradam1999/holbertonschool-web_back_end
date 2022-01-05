@@ -1,12 +1,14 @@
+const fs = require('fs');
+
 function countStudents(path) {
   // Reads database file synchronously
-  const fs = require('fs');
-  const fileData = fs.readFileSync(path, 'utf8');
-  // if file is not available, throw error
-  if (fileData === undefined) {
+  let fileData;
+  try {
+    fileData = fs.readFileSync(path, 'utf8');
+  } catch (err) {
     throw new Error('Cannot load the database');
   }
-  // otherwise, logs number of students.
+  // Calculate number of students total in database
   // DOES NOT INCLUDE HEADER LINE OF CSV FILE AND BLANK LINES
   console.log(`Number of students: ${fileData.split('\n').length - 2}`);
   // calculate CS fields and SWE fields
