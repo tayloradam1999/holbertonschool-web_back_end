@@ -14,7 +14,6 @@ const countStudents = async (path) => {
   const fields = fileData.split('\n').map((line) => line.split(',')[3]);
   // get only unique values
   const uniqueFields = [...new Set(fields)];
-
   // start looping for students in each field
   // declare dict to populate with num of students in field + list of students
   const dict = {};
@@ -27,12 +26,13 @@ const countStudents = async (path) => {
     const studentsInFieldListString = studentsInFieldList.join(', ');
     // log
     console.log(`Number of students in ${uniqueFields[i]}: ${studentsInField}. List: ${studentsInFieldListString}`);
-    // add to dict
+    // add new sets to dict
     dict[uniqueFields[i]] = {
       num: studentsInField,
       list: studentsInFieldListString,
     };
   }
+  console.log(dict);
   return dict;
 };
 
