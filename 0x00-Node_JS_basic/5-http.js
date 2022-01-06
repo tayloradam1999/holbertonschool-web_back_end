@@ -7,15 +7,24 @@
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   if (req.url === '/') {
-    res.end('Hello Holberton School!');
+    res.write('Hello Holberton School!');
+    res.end();
   } else if (req.url === '/students') {
-    res.end('This is the list of students\n' + countStudents);
-  } else {
-    throw new Error('Not a valid URL');
-  }
+    res.write('This is the list of students');
+    const db = process.argv[2];
+    try {
+      if (db) {
+        const students = await countStudents(db);
+        res.write(students);
+        }
+    } catch (err) {
+            res.write('Cannot load the database');
+        }
+      }
+  res.end();
 }).listen(1245);
 
 module.exports = app;
