@@ -12,7 +12,7 @@ const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.end('This is the list of students\n' + countStudents('./database.csv'));
+    res.end('This is the list of students\n' + countStudents);
   } else {
     throw new Error('Not a valid URL');
   }
