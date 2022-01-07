@@ -21,7 +21,7 @@ const app = http.createServer(async (req, res) => {
           res.end();
         })
         .catch((err) => {
-          res.write('This is the list of students:\n');
+          res.write('This is the list of our students\n');
           res.end(err.message);
         });
     }
