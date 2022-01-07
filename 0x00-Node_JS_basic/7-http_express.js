@@ -14,17 +14,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-	res.send('This is the list of our students');
-	await countStudents(process.argv[2])
-	  .then((data) => {
-		res.write(`Number of students: ${data.CS.num + data.SWE.num}}`);
-		res.write(`Number of students in CS: ${data.CS.num}. List: ${data.CS.list}`);
-		res.write(`Number of students in SWE: ${data.SWE.num}. List: ${data.SWE.list}`);
-		res.end();
-	})
-	.catch ((err) => {
-		res.end(err.message);
-	});
-}).listen(1245);
+  await countStudents(process.argv[2])
+    .then((data) => {
+      res.write('This is the list of our students\n');
+      res.write(`Number of students: ${data.CS.num + data.SWE.num}\n`);
+      res.write(`Number of students in CS: ${data.CS.num}. List: ${data.CS.list}\n`);
+      res.write(`Number of students in SWE: ${data.SWE.num}. List: ${data.SWE.list}`);
+      res.end();
+    })
+    .catch((err) => {
+      res.write('This is the list of our students\n');
+      res.end(err.message);
+    });
+}).listen(port);
 
 module.exports = app;
