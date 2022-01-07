@@ -5,28 +5,27 @@
 // Name of the database passed as arugment to file
 
 const http = require('http');
-const countStudents = require('./3-read_file_async.js');
-
+const countStudents = require('./3-read_file_async');
 
 const app = http.createServer(async (req, res) => {
   if (req.method === 'GET') {
     if (req.url === '/') {
-	  res.end('Hello Holberton School!');
-	  } else if (req.url === '/students') {
-		await countStudents(process.argv[2])
-		.then((data) => {
-		  res.write('This is the list of students:\n');
-		  res.write(`Number of students: ${data.length}\n`);
-		  res.write(`Number of students in CS: ${data.CS.num}. List: ${data.CS.list}\n`);
-		  res.write(`Number of students in SWE: ${data.SWE.num}. List: ${data.SWE.list}`);
-		  res.end();
-		})
-		.catch((err) => {
-			res.write('This is the list of students:\n');
-			res.end(err.message);
-		});
-	  }
-	}
+      res.end('Hello Holberton School!');
+    } else if (req.url === '/students') {
+      await countStudents(process.argv[2])
+        .then((data) => {
+          res.write('This is the list of students:\n');
+          res.write(`Number of students: ${data.length}\n`);
+          res.write(`Number of students in CS: ${data.CS.num}. List: ${data.CS.list}\n`);
+          res.write(`Number of students in SWE: ${data.SWE.num}. List: ${data.SWE.list}`);
+          res.end();
+        })
+        .catch((err) => {
+          res.write('This is the list of students:\n');
+          res.end(err.message);
+        });
+    }
+  }
 }).listen(1245);
 
 module.exports = app;
