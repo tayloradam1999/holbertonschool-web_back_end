@@ -14,8 +14,8 @@ const app = http.createServer(async (req, res) => {
     } else if (req.url === '/students') {
       await countStudents(process.argv[2])
         .then((data) => {
-          res.write('This is the list of students:\n');
-          res.write(`Number of students: ${data.length}\n`);
+          res.write('This is the list of our students\n');
+          res.write(`Number of students: ${data.CS.num + data.SWE.num}\n`);
           res.write(`Number of students in CS: ${data.CS.num}. List: ${data.CS.list}\n`);
           res.write(`Number of students in SWE: ${data.SWE.num}. List: ${data.SWE.list}`);
           res.end();
