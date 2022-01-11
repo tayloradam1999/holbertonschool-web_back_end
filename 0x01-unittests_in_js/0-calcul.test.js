@@ -8,9 +8,9 @@ describe ("test suite", function() {
 		assert.equal(calculateNumber(4.5,5), 10);
 	});
 	it("Tests if second number is rounded", function () {
-		assert.equal(calculateNumber(4,5.5), 9);
+		assert.equal(calculateNumber(4,5.5), 10);
 	});
 	it("Tests if both numbers are rounded", function () {
-		assert.equal(calculateNumber(4.5,5.5), 10);
+		assert.equal(calculateNumber(4.5,5.5), 11);
 	});
 });
