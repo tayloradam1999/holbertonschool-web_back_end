@@ -1,7 +1,7 @@
 var myClass = require('./0-calcul');
 var myObj = new myClass();
 var chai = require('chai');
-var assert = chai.assert;
+var assert = require('assert');
 
 
 describe ("test suite", function() {
