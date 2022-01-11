@@ -1,12 +1,7 @@
-class myClass {
-	constructor(a, b) {
-		this.a = Math.round(a);
-		this.b = Math.round(b);
-	}
+// function to round a and b and return sum
 
-	calculateNumber(a, b) {
-		return a + b;
-	}
+const calculateNumber = (a, b) => {
+	return Math.round(a) + Math.round(b);
 }
 
-module.exports = myClass;
+module.exports = calculateNumber;
