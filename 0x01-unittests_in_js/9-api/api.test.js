@@ -20,7 +20,7 @@ describe('Test suite for index page for api.js', () => {
 			done();
 		});
 	});
-})
+});
 
 
 // Test suite for cart page
