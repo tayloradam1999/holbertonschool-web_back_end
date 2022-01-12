@@ -1,6 +1,6 @@
 # 0x01-unittests_in_js
 
-## Learning how to write unittests in JavaScript using Node.js
+Learning how to write unittests in JavaScript using Node.js
 
 Libraries used:
 - [mocha](https://mochajs.org/)
