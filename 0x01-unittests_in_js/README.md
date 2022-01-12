@@ -34,7 +34,7 @@ This is what your devDependencies in package.json should look like after setting
 "devDependencies": {
   "mocha": "^9.1.3",
   "chai": "^4.3.4",
-  "sinon": "^12.0.1"
+  "sinon": "^12.0.1",
   "request": "^2.88.2",
 }
 ```
