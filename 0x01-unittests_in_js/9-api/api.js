@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 // create route 'GET /cart/:id'
 // :id must only be a number (validation in route definition)
-app.get('/cart/:id', (req, res) => {
+app.get('/cart/:id(\\d+)/', (req, res) => {
 	res.send(`Payment methods for cart ${req.params.id}`);
 });
 // export app
