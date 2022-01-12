@@ -32,10 +32,10 @@ $ npm test 6-payment_token.js
 This is what your devDependencies in package.json should look like after setting up the project:
 ```
 "devDependencies": {
-	"mocha": "^9.1.3",
-    "chai": "^4.3.4",
-	"sinon": "^12.0.1"
-    "request": "^2.88.2",
+  "mocha": "^9.1.3",
+  "chai": "^4.3.4",
+  "sinon": "^12.0.1"
+  "request": "^2.88.2",
 }
 ```
 request is used in later tasks to make HTTP requests.
