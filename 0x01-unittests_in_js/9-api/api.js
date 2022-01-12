@@ -12,9 +12,21 @@ app.get('/', (req, res) => {
 	res.send(`Welcome to the payment system`);
 });
 // create route 'GET /cart/:id'
-// :id must only be a number (validation in route definition)
-app.get('/cart/:id(\\d+)/', (req, res) => {
-	res.send(`Payment methods for cart ${req.params.id}`);
+// :id must only be a number
+app.get('/cart/:id', (req, res) => {
+	try {
+		// typecast :id to number
+		req.params.id = Number(req.params.id);
+		// check if :id is a number
+		if (isNaN(req.params.id)) {
+			throw new Error;
+		}
+		// if :id is a number, send back log with :id
+		res.send(`Payment methods for cart ${req.params.id}`);
+	} catch (e) {
+		// if :id is not a number, send back 404 so route does not exist for checker
+		res.sendStatus(404);
+	}
 });
 // export app
 module.exports = app;

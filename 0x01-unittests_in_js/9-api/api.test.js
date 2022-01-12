@@ -25,17 +25,19 @@ describe('Test suite for index page for api.js', () => {
 
 // Test suite for cart page
 describe('Test suite for cart page for api.js', () => {
-	// Correct status code when :id is a number
+	// Correct status code and log when :id is a number
 	it ('Checks for correct HTTP status code when :id is a number', (done) => {
 		request('http://localhost:7865/cart/1', (error, response, body) => {
 			expect(response.statusCode).to.equal(200);
+			expect(body).to.equal('Payment methods for cart 1');
 			done();
 		});
 	});
-	// Correct status code when :id is not a number
+	// Correct status code and log when :id is not a number
 	it ('Checks for correct HTTP status code when :id is not a number', (done) => {
 		request('http://localhost:7865/cart/a', (error, response, body) => {
-			expect(response.statusCode).to.equal(400);
+			expect(response.statusCode).to.equal(404);
+			expect(body).to.equal('Not Found');
 			done();
 		});
 	});
