@@ -1,6 +1,5 @@
 // Unittest file for api.js
 const { expect } = require('chai');
-const mocha = require('mocha');
 const request = require('request');
 
 

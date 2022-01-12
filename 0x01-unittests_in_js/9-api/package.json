@@ -4,7 +4,7 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha /home/adam/holbertonschool-web_back_end/0x01-unittests_in_js/node_modules/mocha/bin/mocha"
   },
   "keywords": [],
   "author": "",
