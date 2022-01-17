@@ -11,7 +11,7 @@
 - How to the build a basic Express app interacting with a Redis server and queue
   
 ## Required Files for the Project
-- **package.json**
+```package.json```  
 ```
 {
     "name": "queuing_system_in_js",
@@ -50,7 +50,7 @@
     }
   }
 ```  
-- **.babelrc**
+```.babelrc```  
 ```
 {
   "presets": [
@@ -58,7 +58,7 @@
   ]
 }
 ```  
-- **and..**
+``and...```
 Don't forget to run ```$ npm install``` to install all dependencies.
 
 ## Workflow
