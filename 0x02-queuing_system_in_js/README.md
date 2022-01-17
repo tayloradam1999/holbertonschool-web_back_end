@@ -17,6 +17,7 @@ Technologies used:
 - How to the build a basic Express app interacting with a Redis server and queue
   
 ## Required Files for the Project
+*Side note: This project was issued many years ago and many of my devDependencies have later versions than the ones listed here.*
 ```package.json```  
 ```
 {

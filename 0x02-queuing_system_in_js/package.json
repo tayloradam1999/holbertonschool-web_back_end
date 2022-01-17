@@ -1,0 +1,22 @@
+{
+  "name": "0x02-queuing_system_in_js",
+  "version": "1.0.0",
+  "description": "Technologies used: - [Node.js](https://nodejs.org/) - [Express](https://expressjs.com/) - [Redis](https://redis.io/) - [Kue](https://github.com/Automattic/kue)",
+  "main": "0-redis_client.js",
+  "scripts": {
+    "test": "mocha /home/adam/holbertonschool-web_back_end/0x02-queuing_system_in_js/node_modules/mocha/bin/mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "express": "^4.17.2",
+    "kue": "^0.11.6",
+    "mocha": "^9.1.4",
+    "nodemon": "^2.0.15",
+    "redis": "^4.0.2",
+    "request": "^2.88.2",
+    "sinon": "^12.0.1"
+  }
+}
