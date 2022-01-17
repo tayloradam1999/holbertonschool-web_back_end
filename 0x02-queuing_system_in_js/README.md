@@ -57,8 +57,7 @@
     "@babel/preset-env"
   ]
 }
-```  
-``and...```
+```and...```  
 Don't forget to run ```$ npm install``` to install all dependencies.
 
 ## Workflow
