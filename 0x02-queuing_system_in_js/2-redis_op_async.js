@@ -41,6 +41,7 @@ async function displaySchoolValue(schoolName) {
 	});
 }
 
+// assign schoolName and value to function
 displaySchoolValue('Holberton');
 setNewSchool('HolbertonSanFrancisco', '100');
 displaySchoolValue('HolbertonSanFrancisco');
