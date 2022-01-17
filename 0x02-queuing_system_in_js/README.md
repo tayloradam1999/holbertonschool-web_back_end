@@ -1,5 +1,11 @@
 # 0x02-queuing_system_in_js
 
+Technologies used:
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Redis](https://redis.io/)
+- [Kue](https://github.com/Automattic/kue)
+
 ## Learning Objectives
 - How to run a Redis server on your machine  
 - How to run simple operations with the Redis client  
@@ -62,15 +68,15 @@
 Don't forget to run ```$ npm install``` to install all dependencies.
 
 ## Workflow
-- **Step 1**: Create a Redis instance on your machine.
-- **Step 2**: Create Node Redis client.
-- **Step 3**: Basic Operations with Node Redis client.
-- **Step 4**: Async operations with Node Redis client.
-- **Step 5**: Advanced Operations with Node Redis client. (Hash values)
-- **Step 6**: Node Redis Client publish/subcribe.
+- **Step 1**: Create a Redis instance on your machine
+- **Step 2**: Create Node Redis client
+- **Step 3**: Basic Operations with Node Redis client
+- **Step 4**: Async operations with Node Redis client
+- **Step 5**: Advanced Operations with Node Redis client (Hash values)
+- **Step 6**: Node Redis Client publish/subcribe
 - **Step 7**: Kue 'Job creator' queue
 - **Step 8**: Kue 'Job processor' queue
 - **Step 9**: Track progress and errors with Kue
 - **Step 10**: Writing 'job creation' function
 - **Step 11**: Writing a test for the job creation function
-- **Step 12**: Wrapping everything together to make an 'In stock' app
+- **Step 12**: Wrapping everything together to make an 'In stock' Express app
