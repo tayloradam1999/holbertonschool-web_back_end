@@ -58,7 +58,7 @@
   ]
 }
 ```
-```and...```  
+**AND...** 
 Don't forget to run ```$ npm install``` to install all dependencies.
 
 ## Workflow
