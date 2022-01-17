@@ -1,5 +1,4 @@
 // Using Babel, connects to Redis server
-
 const redis = require('redis');
 const client = redis.createClient();
 
