@@ -4,12 +4,16 @@
   "description": "Technologies used: - [Node.js](https://nodejs.org/) - [Express](https://expressjs.com/) - [Redis](https://redis.io/) - [Kue](https://github.com/Automattic/kue)",
   "main": "0-redis_client.js",
   "scripts": {
-    "test": "mocha /home/adam/holbertonschool-web_back_end/0x02-queuing_system_in_js/node_modules/mocha/bin/mocha"
+    "dev": "nodemon --exec babel-node --presets @babel/preset-env"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
     "chai": "^4.3.4",
     "express": "^4.17.2",
     "kue": "^0.11.6",
