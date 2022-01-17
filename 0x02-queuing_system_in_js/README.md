@@ -1,6 +1,7 @@
 # 0x02-queuing_system_in_js
 
 Technologies used:
+- [Babel](https://babeljs.io/)
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [Redis](https://redis.io/)
