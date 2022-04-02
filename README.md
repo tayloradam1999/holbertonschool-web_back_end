@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
   
-## [i8n](https://github.com/tayloradam1999/holbertonschool-web_back_end/tree/main/0x01-i18n)
+## [0x00-i8n](https://github.com/tayloradam1999/holbertonschool-web_back_end/tree/main/0x01-i18n)
   
 Internationalization (i18n) is the **process of preparing software so that it can support local languages and cultural settings**. An internationalized product supports the requirements of local markets around the world, functioning more appropriately based on local norms and better meeting in-country user expectations.
   
